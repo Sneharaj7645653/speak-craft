@@ -1,0 +1,452 @@
+{
+  "generatedAt": "2026-11-21T18:09:47.051Z",
+  "environment": {
+    "platform": "darwin",
+    "architecture": "arm64",
+    "node": "v26.3.1",
+    "postgres": "PostgreSQL 17.12 on aarch64-unknown-linux-gnu, compiled by gcc (GCC) 15.2.0, 64-bit",
+    "cpuCount": 8,
+    "totalMemoryBytes": 17179869184,
+    "concurrencyLevels": [
+      1,
+      10,
+      25,
+      50,
+      100
+    ],
+    "repetitionsPerLevel": 3,
+    "dataset": {
+      "syntheticStudents": 300,
+      "syntheticAssignments": 10,
+      "syntheticDistributions": 3000,
+      "streakHistoryRows": 400
+    }
+  },
+  "correctness": [
+    {
+      "name": "first heartbeat creates session",
+      "expected": "isNewSession=true, creditedSeconds=0",
+      "actual": "isNewSession=true, creditedSeconds=0",
+      "passed": true
+    },
+    {
+      "name": "30-second heartbeat credit",
+      "expected": "creditedSeconds=30",
+      "actual": "creditedSeconds=30",
+      "passed": true
+    },
+    {
+      "name": "duplicate timestamp does not double credit",
+      "expected": "creditedSeconds=0",
+      "actual": "creditedSeconds=0",
+      "passed": true
+    },
+    {
+      "name": "100 beats respect daily and per-beat caps",
+      "expected": "sessionSeconds<=1800, dailyTotalSeconds<=1800",
+      "actual": "sessionSeconds=1800, dailyTotalSeconds=1800",
+      "passed": true
+    },
+    {
+      "name": "backward clock cannot credit or move watermark",
+      "expected": "creditedSeconds=0",
+      "actual": "creditedSeconds=0",
+      "passed": true
+    },
+    {
+      "name": "ended session cannot continue",
+      "expected": "SESSION_ENDED",
+      "actual": "SESSION_ENDED",
+      "passed": true
+    },
+    {
+      "name": "unowned assignment is rejected",
+      "expected": "ASSIGNMENT_NOT_ASSIGNED or SESSION_FORBIDDEN",
+      "actual": "ASSIGNMENT_NOT_ASSIGNED",
+      "passed": true
+    },
+    {
+      "name": "100 simultaneous requests for one student",
+      "expected": "success=100, sessionSeconds<=60, dailySeconds<=60",
+      "actual": "success=100, sessionSeconds=60, dailySeconds=60",
+      "passed": true
+    }
+  ],
+  "streak": {
+    "rowCount": 400,
+    "qualifyingCount": 400,
+    "streakAtBenchmarkDate": 400
+  },
+  "benchmark": {
+    "heartbeatOld": {
+      "1": {
+        "reps": [
+          1,
+          1,
+          1
+        ],
+        "medianAverageMs": 0.8617500000000291,
+        "medianP50Ms": 0.8617500000000291,
+        "medianP95Ms": 0.8617500000000291,
+        "medianP99Ms": 0.8617500000000291,
+        "medianThroughput": 1156.403584851093,
+        "medianFailed": 0,
+        "medianSuccess": 1
+      },
+      "10": {
+        "reps": [
+          10,
+          10,
+          10
+        ],
+        "medianAverageMs": 2.749449799999985,
+        "medianP50Ms": 2.8056249999999636,
+        "medianP95Ms": 2.962832999999989,
+        "medianP99Ms": 2.962832999999989,
+        "medianThroughput": 3358.005720698545,
+        "medianFailed": 0,
+        "medianSuccess": 10
+      },
+      "25": {
+        "reps": [
+          25,
+          25,
+          25
+        ],
+        "medianAverageMs": 4.649556719999998,
+        "medianP50Ms": 4.776833999999951,
+        "medianP95Ms": 4.8874589999999785,
+        "medianP99Ms": 4.890416999999957,
+        "medianThroughput": 5100.0018564007005,
+        "medianFailed": 0,
+        "medianSuccess": 25
+      },
+      "50": {
+        "reps": [
+          50,
+          50,
+          50
+        ],
+        "medianAverageMs": 7.766846760000001,
+        "medianP50Ms": 7.890833000000043,
+        "medianP95Ms": 8.330375000000004,
+        "medianP99Ms": 8.488458000000037,
+        "medianThroughput": 5872.191286866108,
+        "medianFailed": 0,
+        "medianSuccess": 50
+      },
+      "100": {
+        "reps": [
+          100,
+          100,
+          100
+        ],
+        "medianAverageMs": 14.889700899999998,
+        "medianP50Ms": 14.386291999999912,
+        "medianP95Ms": 19.876041999999984,
+        "medianP99Ms": 20.25324999999998,
+        "medianThroughput": 4915.34328831255,
+        "medianFailed": 0,
+        "medianSuccess": 100
+      }
+    },
+    "heartbeatNew": {
+      "1": {
+        "reps": [
+          1,
+          1,
+          1
+        ],
+        "medianAverageMs": 0.3644159999999488,
+        "medianP50Ms": 0.3644159999999488,
+        "medianP95Ms": 0.3644159999999488,
+        "medianP99Ms": 0.3644159999999488,
+        "medianThroughput": 2727.2702479360883,
+        "medianFailed": 0,
+        "medianSuccess": 1
+      },
+      "10": {
+        "reps": [
+          10,
+          10,
+          10
+        ],
+        "medianAverageMs": 1.1566292000000034,
+        "medianP50Ms": 1.104750000000024,
+        "medianP95Ms": 1.43670800000001,
+        "medianP99Ms": 1.43670800000001,
+        "medianThroughput": 6884.880664363276,
+        "medianFailed": 0,
+        "medianSuccess": 10
+      },
+      "25": {
+        "reps": [
+          25,
+          25,
+          25
+        ],
+        "medianAverageMs": 2.2342233199999986,
+        "medianP50Ms": 2.1656249999999773,
+        "medianP95Ms": 2.5473330000000374,
+        "medianP99Ms": 2.958082999999988,
+        "medianThroughput": 8369.601606963444,
+        "medianFailed": 0,
+        "medianSuccess": 25
+      },
+      "50": {
+        "reps": [
+          50,
+          50,
+          50
+        ],
+        "medianAverageMs": 3.370815819999998,
+        "medianP50Ms": 3.5009999999999764,
+        "medianP95Ms": 4.2054580000000215,
+        "medianP99Ms": 4.244000000000028,
+        "medianThroughput": 11665.774623767235,
+        "medianFailed": 0,
+        "medianSuccess": 50
+      },
+      "100": {
+        "reps": [
+          100,
+          100,
+          100
+        ],
+        "medianAverageMs": 6.298985850000004,
+        "medianP50Ms": 5.1297499999999445,
+        "medianP95Ms": 8.763541000000032,
+        "medianP99Ms": 8.796291999999994,
+        "medianThroughput": 11207.202914141626,
+        "medianFailed": 0,
+        "medianSuccess": 100
+      }
+    },
+    "streak": {
+      "1": {
+        "reps": [
+          1,
+          1,
+          1
+        ],
+        "medianAverageMs": 0.5362499999999955,
+        "medianP50Ms": 0.5362499999999955,
+        "medianP95Ms": 0.5362499999999955,
+        "medianP99Ms": 0.5362499999999955,
+        "medianThroughput": 1861.6184538511745,
+        "medianFailed": 0,
+        "medianSuccess": 1
+      },
+      "10": {
+        "reps": [
+          10,
+          10,
+          10
+        ],
+        "medianAverageMs": 1.7507583000000069,
+        "medianP50Ms": 1.659249999999929,
+        "medianP95Ms": 2.6697920000000295,
+        "medianP99Ms": 2.6697920000000295,
+        "medianThroughput": 3724.5113068715223,
+        "medianFailed": 0,
+        "medianSuccess": 10
+      },
+      "25": {
+        "reps": [
+          25,
+          25,
+          25
+        ],
+        "medianAverageMs": 3.437264999999998,
+        "medianP50Ms": 3.44337500000006,
+        "medianP95Ms": 5.547458000000006,
+        "medianP99Ms": 5.7490830000000415,
+        "medianThroughput": 4321.551803565105,
+        "medianFailed": 0,
+        "medianSuccess": 25
+      },
+      "50": {
+        "reps": [
+          50,
+          50,
+          50
+        ],
+        "medianAverageMs": 8.035288379999997,
+        "medianP50Ms": 8.046082999999953,
+        "medianP95Ms": 12.999957999999992,
+        "medianP99Ms": 13.455790999999977,
+        "medianThroughput": 3706.414877549309,
+        "medianFailed": 0,
+        "medianSuccess": 50
+      },
+      "100": {
+        "reps": [
+          100,
+          100,
+          100
+        ],
+        "medianAverageMs": 12.331330870000002,
+        "medianP50Ms": 12.64766700000007,
+        "medianP95Ms": 21.321542000000022,
+        "medianP99Ms": 22.043874999999957,
+        "medianThroughput": 4482.0438119782675,
+        "medianFailed": 0,
+        "medianSuccess": 100
+      }
+    },
+    "metrics": {
+      "1": {
+        "reps": [
+          1,
+          1,
+          1
+        ],
+        "medianAverageMs": 1.0427909999999656,
+        "medianP50Ms": 1.0427909999999656,
+        "medianP95Ms": 1.0427909999999656,
+        "medianP99Ms": 1.0427909999999656,
+        "medianThroughput": 957.5865754022443,
+        "medianFailed": 0,
+        "medianSuccess": 1
+      },
+      "10": {
+        "reps": [
+          10,
+          10,
+          10
+        ],
+        "medianAverageMs": 3.751133200000015,
+        "medianP50Ms": 3.787208000000078,
+        "medianP95Ms": 4.592999999999961,
+        "medianP99Ms": 4.592999999999961,
+        "medianThroughput": 2172.5551964804417,
+        "medianFailed": 0,
+        "medianSuccess": 10
+      },
+      "25": {
+        "reps": [
+          25,
+          25,
+          25
+        ],
+        "medianAverageMs": 6.4312816400000115,
+        "medianP50Ms": 6.44237499999997,
+        "medianP95Ms": 8.86512499999992,
+        "medianP99Ms": 9.072915999999964,
+        "medianThroughput": 2747.516931573069,
+        "medianFailed": 0,
+        "medianSuccess": 25
+      },
+      "50": {
+        "reps": [
+          50,
+          50,
+          50
+        ],
+        "medianAverageMs": 12.029279980000002,
+        "medianP50Ms": 12.129958999999872,
+        "medianP95Ms": 17.388292000000092,
+        "medianP99Ms": 17.656082999999853,
+        "medianThroughput": 2826.0163061140606,
+        "medianFailed": 0,
+        "medianSuccess": 50
+      },
+      "100": {
+        "reps": [
+          100,
+          100,
+          100
+        ],
+        "medianAverageMs": 18.48168914999999,
+        "medianP50Ms": 18.841042000000016,
+        "medianP95Ms": 28.612167,
+        "medianP99Ms": 29.454083999999966,
+        "medianThroughput": 3359.0909547440124,
+        "medianFailed": 0,
+        "medianSuccess": 100
+      }
+    },
+    "assignmentDistribution": {
+      "1": {
+        "reps": [
+          1,
+          1,
+          1
+        ],
+        "medianAverageMs": 3.7658329999999296,
+        "medianP50Ms": 3.7658329999999296,
+        "medianP95Ms": 3.7658329999999296,
+        "medianP99Ms": 3.7658329999999296,
+        "medianThroughput": 265.398627411386,
+        "medianFailed": 0,
+        "medianSuccess": 1
+      },
+      "10": {
+        "reps": [
+          10,
+          10,
+          10
+        ],
+        "medianAverageMs": 13.313670800000022,
+        "medianP50Ms": 14.111707999999908,
+        "medianP95Ms": 15.151832999999897,
+        "medianP99Ms": 15.151832999999897,
+        "medianThroughput": 659.3080417054483,
+        "medianFailed": 0,
+        "medianSuccess": 10
+      },
+      "25": {
+        "reps": [
+          25,
+          25,
+          25
+        ],
+        "medianAverageMs": 30.968903120000004,
+        "medianP50Ms": 33.6388750000001,
+        "medianP95Ms": 39.725415999999996,
+        "medianP99Ms": 39.729499999999916,
+        "medianThroughput": 629.0138949169377,
+        "medianFailed": 0,
+        "medianSuccess": 25
+      },
+      "50": {
+        "reps": [
+          50,
+          50,
+          50
+        ],
+        "medianAverageMs": 58.03761243999998,
+        "medianP50Ms": 61.6104170000001,
+        "medianP95Ms": 79.42770799999994,
+        "medianP99Ms": 79.59583399999997,
+        "medianThroughput": 627.837038618256,
+        "medianFailed": 0,
+        "medianSuccess": 50
+      },
+      "100": {
+        "reps": [
+          100,
+          100,
+          100
+        ],
+        "medianAverageMs": 130.44740501,
+        "medianP50Ms": 140.24745800000005,
+        "medianP95Ms": 187.0089170000001,
+        "medianP99Ms": 187.6842079999999,
+        "medianThroughput": 531.501659558124,
+        "medianFailed": 0,
+        "medianSuccess": 100
+      }
+    },
+    "explainAnalyze": {
+      "heartbeatMs": 0.212,
+      "streakMs": 0.081,
+      "metricsMs": 6.567
+    }
+  },
+  "ai": {
+    "groqConfigured": false,
+    "geminiConfigured": false,
+    "status": "unavailable_no_local_provider_key"
+  }
+}

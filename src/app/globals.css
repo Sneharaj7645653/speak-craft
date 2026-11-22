@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * Global base styling for the SpeakCraft light theme.
+ * Crisp white canvas, neutral ink, brand-blue focus rings.
+ */
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  @apply bg-surface-base text-slate-900 antialiased;
+}
+
+/* Consistent brand-blue focus ring on all interactive elements. */
+:where(a, button, input, textarea, select):focus-visible {
+  @apply outline-none ring-2 ring-brand-primary ring-offset-2 ring-offset-surface-base;
+}

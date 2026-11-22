@@ -1,0 +1,210 @@
+{
+  "state": {
+    "isStdOutTTY": false,
+    "isStdErrTTY": false,
+    "testRunDurationMs": 8026.831
+  },
+  "metrics": {
+    "http_req_receiving": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "med": 0.084,
+        "p(50)": 0.084,
+        "p(95)": 0.20249999999999999,
+        "p(99)": 0.2815,
+        "avg": 0.09764705882352938
+      }
+    },
+    "http_req_tls_handshaking": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(50)": 0,
+        "p(95)": 0,
+        "p(99)": 0,
+        "avg": 0,
+        "med": 0
+      }
+    },
+    "data_received": {
+      "type": "counter",
+      "contains": "data",
+      "values": {
+        "rate": 429881.2320827485,
+        "count": 3450584
+      }
+    },
+    "http_req_connecting": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 0.9878039215686277,
+        "med": 0.914,
+        "p(50)": 0.914,
+        "p(95)": 2.0889999999999995,
+        "p(99)": 2.2775
+      }
+    },
+    "api_requests": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 50,
+        "rate": 6.229108349235209
+      }
+    },
+    "http_req_failed": {
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 51
+      },
+      "type": "rate",
+      "contains": "default"
+    },
+    "data_sent": {
+      "values": {
+        "count": 107054,
+        "rate": 13337.019304380521
+      },
+      "type": "counter",
+      "contains": "data"
+    },
+    "http_req_waiting": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 90.70207843137257,
+        "med": 97.647,
+        "p(50)": 97.647,
+        "p(95)": 120.02099999999999,
+        "p(99)": 122.527
+      }
+    },
+    "api_response_time": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "med": 98.57050000000001,
+        "p(50)": 98.57050000000001,
+        "p(95)": 120.44829999999999,
+        "p(99)": 122.61676,
+        "avg": 92.35689999999998
+      }
+    },
+    "api_successes": {
+      "values": {
+        "count": 50,
+        "rate": 6.229108349235209
+      },
+      "type": "counter",
+      "contains": "default"
+    },
+    "http_req_duration": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(95)": 120.21199999999999,
+        "p(99)": 122.616,
+        "avg": 91.02407843137257,
+        "med": 98.06,
+        "p(50)": 98.06
+      }
+    },
+    "http_req_duration{expected_response:true}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 91.02407843137257,
+        "med": 98.06,
+        "p(50)": 98.06,
+        "p(95)": 120.21199999999999,
+        "p(99)": 122.616
+      }
+    },
+    "vus_max": {
+      "values": {
+        "value": 50,
+        "min": 50,
+        "max": 50
+      },
+      "type": "gauge",
+      "contains": "default"
+    },
+    "http_req_blocked": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(50)": 0.989,
+        "p(95)": 2.3565,
+        "p(99)": 3.630499999999999,
+        "avg": 1.2194313725490196,
+        "med": 0.989
+      }
+    },
+    "vus": {
+      "type": "gauge",
+      "contains": "default",
+      "values": {
+        "value": 2,
+        "min": 2,
+        "max": 50
+      }
+    },
+    "checks": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "passes": 50,
+        "fails": 0,
+        "rate": 1
+      }
+    },
+    "http_req_sending": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 0.22435294117647056,
+        "med": 0.198,
+        "p(50)": 0.198,
+        "p(95)": 0.4544999999999999,
+        "p(99)": 0.4715
+      }
+    },
+    "http_reqs": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 51,
+        "rate": 6.353690516219913
+      }
+    }
+  },
+  "root_group": {
+    "name": "",
+    "path": "",
+    "id": "d41d8cd98f00b204e9800998ecf8427e",
+    "groups": [],
+    "checks": [
+      {
+        "name": "API response satisfies endpoint contract",
+        "path": "::API response satisfies endpoint contract",
+        "id": "1db9181698005892f79ba22c04179b4d",
+        "passes": 50,
+        "fails": 0
+      }
+    ]
+  },
+  "options": {
+    "summaryTrendStats": [
+      "avg",
+      "med",
+      "p(50)",
+      "p(95)",
+      "p(99)"
+    ],
+    "summaryTimeUnit": "",
+    "noColor": false
+  }
+}
